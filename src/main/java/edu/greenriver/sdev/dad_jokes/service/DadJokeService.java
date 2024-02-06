@@ -42,5 +42,9 @@ public class DadJokeService
         repository.deleteById(id);
     }
 
+    public DadJoke byId(int id)
+    {
+        return repository.findById(id).orElse(null);
+    }
 
 }
