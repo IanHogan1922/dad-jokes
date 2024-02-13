@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/dadjoke")
 public class DadJokeApi
 {
     private DadJokeService service;
@@ -19,19 +18,19 @@ public class DadJokeApi
         this.service = service;
     }
 
-    @GetMapping("all")
+    @GetMapping("jokes")
     public ResponseEntity<List<DadJoke>> all()
     {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("jokes")
     public ResponseEntity addJoke(@RequestBody DadJoke newJoke)
     {
         return new ResponseEntity(service.addJoke(newJoke), HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("jokes/{id}")
     public ResponseEntity<DadJoke> updateDadJoke(@PathVariable int id,@RequestBody DadJoke newJokeText)
     {
         DadJoke joke = service.byId(id);
@@ -46,7 +45,7 @@ public class DadJokeApi
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("jokes/{id}")
     public ResponseEntity deleteJoke(@PathVariable int id)
     {
         DadJoke joke = service.byId(id);
